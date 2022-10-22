@@ -2,7 +2,7 @@
 
 #trainer{
     width: 20%;
-    height :20%
+   
 }
 .container{
     padding: 10px;
@@ -33,6 +33,7 @@ body {
 }
 .p-3{
     background-color: beige;
+    
 }
 
 .about span {
