@@ -43,7 +43,7 @@ onsubmit(){
    console.log("enroll.ts",this.registrationForm.value);
     Swal.fire(
       'Enrolled!',
-      'Your enrollment form has been accepted.',
+      'Your enrollment form has been submitted.Kindly wait for Confirmation mail.',
       'success'
     )
   this.router.navigate(['/'])

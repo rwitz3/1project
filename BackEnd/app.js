@@ -221,7 +221,7 @@ app.put("/allocate",(req, res) => {
       subject: 'Trainer Allocation Details',
      
       html:`<p>'Dear sir/mam,<br>We have completed your allocation process.Please find the details below:<br>
-      StartDate:${req.body.startdate},Enddate:${trainers.enddate},Coursename:${trainers.courses},CourseID:${trainers.courseid},BatchID:${trainers.batchid},link:${trainers.link}
+      StartDate:${req.body.startdate},Enddate:${req.body.enddate},Coursename:${req.body.courses},CourseID:${req.body.courseid},BatchID:${req.body.batchid},link:${req.body.link}
       <br>From,TMS Admin
       </p>`
     };
@@ -342,7 +342,7 @@ app.get("/requests", verifyToken,function (req, res) {
         subject: 'Selected as a Trainer at ICT',
        
         html:`<p>'Thank you for taking the time to apply for the trainer position.We have completed all of our procedures.Congratulations!! you have been selected .Please find the details below:<br>
-        Type of employment:${type},Trainer ID:${trainers.newid}</p>
+        Type of employment:${type},Trainer ID:${newid}</p>
         <br>
         From TMS Admin`
       };
