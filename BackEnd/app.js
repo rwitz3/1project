@@ -55,19 +55,16 @@ app.post("/signup", (req, res, next) => {
 
     UserData.findOne({ email: req.body.email })
       .then((user1) => {
-        if (user1) {
-          return res.status(401).json({
-            message: "User Already Exist",
+        if (user1!=null) {
+          return res.status(200).json({
+            message: "failed",error:"user already exist"
         });
         }
+        else {
 user.save().then((result) => {
-          if (!result) {
-            return res.send({
-              message: "Error Creating USer",
-            });
-          }
-          res.send({message:"success"});
-        });
+          
+        return res.status(200).json({message:"success"});
+        });}
       })
       .catch((err) => {
         res.send({
@@ -85,44 +82,30 @@ app.post("/login", (req, res, next) => {
   console.log("login check", req.body.email);
   UserData.findOne({ email: email })
     .then((user) => {
-      if (!user) {
+      console.log("user",user);
+      if (user==null) {
         return res.send({
-          message: " failed ",
+          message: " failed ",tok:null
           
         });
         return;
       }
+      if(user!=null){
       fetchedUser = user;
-      return bcrypt.compare(req.body.password, user.password);
-    })
-    .then((result) => {
-      if (result) {
-        let payload = { subject: req.body.email + req.body.password };
-        let token = jwt.sign(payload, "secretKey");
 
-        if (req.body.email != "tmsictak22@gmail.com") {
-          FormData.findOne({ email: req.body.email }, function (trainer, err) {
-            if (trainer) {
-              approved = trainer.approved;
-              res.status(200).send({ tok: token, approval: approved });
-            } else {
-              res
-                .status(200)
-                .send({ tok: token, approval: "", email: req.body.email });
-            }
-          });
-        } else {
-          res.status(200).send({ tok: token, approval: "", email });
-          console.log("f" + fetchedUser);
-        }
-      }
-      if (!result) {
-        return res.send({
-          message: " failed ",
-        });
-      }
-    });
-});
+      let payload = { subject: req.body.email + req.body.password };
+      let token = jwt.sign(payload, "secretKey");
+
+      if (req.body.email != "tmsictak22@gmail.com") {
+       
+            res.status(200).send({ tok: token, message:"success",user:fetchedUser.email ,role:"trainer"});
+          } 
+          if (req.body.email == "tmsictak22@gmail.com") {
+            res.status(200).send({ tok: token, message:"success",user:fetchedUser.email ,role:"admin"});
+          } 
+      } 
+})});
+
 
 //  to get details in trainer list page
 

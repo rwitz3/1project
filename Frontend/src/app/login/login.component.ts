@@ -36,27 +36,28 @@ export class LoginComponent implements OnInit {
       var logindata = this.loginForm.value;
       this.authService.loginUser(logindata)
   .subscribe(data=>{
+    if(data.message=="success"){
+    console.log(data);
     localStorage.setItem('token', data.tok)   
     console.log("login token",data.tok)
-    localStorage.setItem('Approvalstatus', data.approval)         
-    localStorage.setItem('currentUser', data.email);
-    if(data.email=="tmsictak22@gmail.com")
+    //localStorage.setItem('Approvalstatus', data.approval)         
+    localStorage.setItem('currentUser', data.user);
+    if(data.user=="tmsictak22@gmail.com")
     {
      this.router.navigate(['/trainer-profile'])
     }
-     else{
-    if(data.message="failed"){
-      Swal.fire('Oops', 'Invalid', 'error');
-      
-    }
+    
     else{
      
       this.router.navigate(['/enrollmentform'])
     }
-   
+  }
+  if(data.message=="failed"){
+    Swal.fire('oops','invalid');
+  }
   }
   
-})}
+)}
   
   }}
 
