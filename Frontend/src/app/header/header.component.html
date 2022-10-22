@@ -5,7 +5,8 @@
   <span class="navbar-toggler-icon"></span>
 </button>
 <h1>{{title}}</h1>
- <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+<!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family:Verdana, Geneva, Tahoma, sans-serif"> -->
+ <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
   <li> <a class="nav-item"  *ngIf="!auth.loggedIn()" routerLink="" >Home</a></li>
    <li> <a class="nav-item"*ngIf="auth.loggedIn()&&!getloguser()"  routerLink="/enrollmentform" (focusin)='getloguser()'>Enrollment Form</a></li>
    <li> <a class="nav-item" *ngIf="auth.loggedIn()&&getloguser()"  routerLink="/trainer-profile" (focusin)='getloguser()'>Trainers</a></li>
@@ -16,7 +17,8 @@
   <ul class="nav navbar-right navbar-nav ms-auto" style="font-family:Verdana, Geneva, Tahoma, sans-serif">
     <a class="nav-link " *ngIf="auth.loggedIn()" (focusin)='getloguser()' > Logged in :<i class="fa-regular fa-user"></i></a>
     <a class="nav-link " *ngIf="!auth.loggedIn()" routerLink="/login" (focusin)='getloguser()'>Login</a>
-    <a class="nav-link " *ngIf="!auth.loggedIn()" routerLink="/signup" (focusin)='getloguser()'><b>Sign Up</b></a></ul>
+    <a class="nav-link " *ngIf="!auth.loggedIn()" routerLink="/signup" (focusin)='getloguser()'><b>Sign Up</b></a>
+  </ul>
     <a class="nav-link " *ngIf="auth.loggedIn()"    (click)="logoutUser()" ><b><i class="fa-solid fa-arrow-right-from-bracket"></i></b></a>
 </div>
 </div>
