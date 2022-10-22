@@ -11,7 +11,7 @@ export class AuthserviceService {
   constructor(private http:HttpClient) { }
   signup(sdata:any){
     console.log("service in signup auth service")
-    return this.http.post<any>(this.url +'/signup',sdata)
+    return this.http.post<any>(this.url + '/signup',sdata)
     
    
   }
@@ -19,7 +19,7 @@ export class AuthserviceService {
   loginUser(logindata:any){
   
     console.log("service in logincomponent.ts")
-    return this.http.post<any>(this.url +'/login',logindata)
+    return this.http.post<any>(this.url + '/login',logindata)
   }
   loggedIn(){
     return !!localStorage.getItem('token');
