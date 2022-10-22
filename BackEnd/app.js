@@ -76,12 +76,12 @@ user.save().then((result) => {
 
 // login check the informations
 
-app.post("/login", (req, res, next) => {
+app.post("/login",async (req, res, ) => {
   let fetchedUser;
-  let email = req.body.email;
-  console.log("login check", req.body.email);
-  UserData.findOne({ email: email })
-    .then((user) => {
+let email = req.body.email;
+console.log("login check", req.body.email);
+  UserData.findOne({ email: email})
+    .then( async (user) => {
       console.log("user",user);
       if (user==null) {
         return res.send({
@@ -92,7 +92,10 @@ app.post("/login", (req, res, next) => {
       }
       if(user!=null){
       fetchedUser = user;
-
+      const cmp =  await bcrypt.compare(req.body.password, user.password);
+      if (cmp)
+      { 
+        console.log("cmp",cmp);
       let payload = { subject: req.body.email + req.body.password };
       let token = jwt.sign(payload, "secretKey");
 
@@ -104,7 +107,12 @@ app.post("/login", (req, res, next) => {
             res.status(200).send({ tok: token, message:"success",user:fetchedUser.email ,role:"admin"});
           } 
       } 
-})});
+    
+    else {
+      return res.status(200).json({
+            message: "failed",error:"wrong username or password"})
+      }
+}})});
 
 
 //  to get details in trainer list page

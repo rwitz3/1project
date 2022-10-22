@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     }
   }
   if(data.message=="failed"){
-    Swal.fire('oops','invalid');
+    Swal.fire('oops',data.error,'error');
   }
   }
   
