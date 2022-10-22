@@ -1,9 +1,9 @@
 
 .navbar-nav{
-    margin-left: 12cm;
+    margin-left: 22cm;
 }
 .nav-item{
-    margin-left: 10px;
+    margin-left: 15px;
     margin-top: 10px;
     display: flex;
     font-size: 15px;
@@ -27,6 +27,7 @@ h1{
     padding: 1px;
 }
 .nav-link{
+    margin-left: 15px;
     margin-top: 10px;
     display: flex;
     font-size:15px;
