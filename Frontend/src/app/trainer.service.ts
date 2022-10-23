@@ -37,7 +37,7 @@ export class TrainerService {
 
   allocateTrainer(body:any){
   console.log("inside allocate service file id",body._id)
-  return this.http.put<any>(this.url +"allocate",body)
+  return this.http.put<any>(this.url +"/allocate/",body)
   
 }
 
